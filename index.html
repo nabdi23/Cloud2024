@@ -2,25 +2,111 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Votre Application</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud2024</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome-container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<form id="signup-form">
-    <input type="email" id="email" placeholder="Adresse e-mail" required>
-    <input type="password" id="password" placeholder="Mot de passe" required>
-    <button type="submit">S'inscrire</button>
-</form>
+<div id="welcome-container">
+    <h1>Bienvenue sur notre application</h1>
+    <button id="show-signup">Créer un compte</button>
+    <button id="show-login">Se connecter</button>
+</div>
 
-<form id="login-form">
-    <input type="email" id="login-email" placeholder="Adresse e-mail" required>
-    <input type="password" id="login-password" placeholder="Mot de passe" required>
-    <button type="submit">Se connecter</button>
-</form>
+<!-- Formulaire d'inscription -->
+<div id="signup-container" style="display: none;">
+    <form id="signup-form">
+        <input type="email" id="signup-email" placeholder="Email" required>
+        <input type="password" id="signup-password" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+        <button type="button" id="cancel-signup">Annuler</button>
+    </form>
+</div>
 
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-<script src="scripts.js"></script>
+<!-- Formulaire de connexion -->
+<div id="login-container" style="display: none;">
+    <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+        <button type="button" id="cancel-login">Annuler</button>
+    </form>
+</div>
+
+<div id="message-container" style="display:none; position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; border: 1px solid #f5c6cb;">
+    <p id="auth-message"></p>
+</div>
+<script src="./CloudFilm.js" type="module"></script>
+
+<script>
+    // Ajoutez ici votre script ou référencez un fichier externe
+    document.getElementById('show-signup').addEventListener('click', function() {
+        document.getElementById('welcome-container').style.display = 'none';
+        document.getElementById('signup-container').style.display = 'block';
+    });
+
+    document.getElementById('show-login').addEventListener('click', function() {
+        document.getElementById('welcome-container').style.display = 'none';
+        document.getElementById('login-container').style.display = 'block';
+    });
+
+    document.getElementById('cancel-signup').addEventListener('click', function() {
+        document.getElementById('signup-container').style.display = 'none';
+        document.getElementById('welcome-container').style.display = 'block';
+    });
+
+    document.getElementById('cancel-login').addEventListener('click', function() {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('welcome-container').style.display = 'block';
+    });
+
+</script>
+
 </body>
 </html>
-
