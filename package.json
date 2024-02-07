@@ -2,6 +2,7 @@
   "name": "untitled",
   "version": "1.0.0",
   "dependencies": {
-    "firebase": "^10.8.0"
+    "firebase": "^10.8.0",
+    "toastr": "^2.1.4"
   }
 }
