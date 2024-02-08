@@ -61,7 +61,7 @@ function createCard(element, i) {
         var formData = new FormData(event.target);
         var vote = formData.get('vote'); // Get the selected vote value
         const currentUser = myUser.getCurrentUser();
-        console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
+       // console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
         myMovieService.voteForMovie(element.id, currentUser.uid, vote); // Call voteForMovie
         // You can now handle the vote submission here, e.g., send it to the server
     });
