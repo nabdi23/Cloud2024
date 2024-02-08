@@ -54,17 +54,22 @@ function createCard(element, i) {
     card.appendChild(synopsis);
   
    
-    // vote form
-    var voteForm = document.createElement('form');
-    voteForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+   // vote form
+var voteForm = document.createElement('form');
+voteForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const currentUser = myUser.getCurrentUser();
+    if (currentUser) {
         var formData = new FormData(event.target);
         var vote = formData.get('vote'); // Get the selected vote value
-        const currentUser = myUser.getCurrentUser();
-       // console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
+        console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
         myMovieService.voteForMovie(element.id, currentUser.uid, vote); // Call voteForMovie
         // You can now handle the vote submission here, e.g., send it to the server
-    });
+    } else {
+        console.log("No user is currently logged in.");
+        // Handle the case where no user is logged in, perhaps by displaying a message to the user
+    }
+});
     
     var voteSelect = document.createElement('select');
     //add class to select bootstrap
