@@ -55,21 +55,22 @@ function createCard(element, i) {
   
    
    // vote form
-var voteForm = document.createElement('form');
-voteForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-    const currentUser = myUser.getCurrentUser();
-    if (currentUser) {
-        var formData = new FormData(event.target);
-        var vote = formData.get('vote'); // Get the selected vote value
-        console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
-        myMovieService.voteForMovie(element.id, currentUser.uid, vote); // Call voteForMovie
-        // You can now handle the vote submission here, e.g., send it to the server
-    } else {
-        console.log("No user is currently logged in.");
-        // Handle the case where no user is logged in, perhaps by displaying a message to the user
-    }
-});
+// Récupérer l'utilisateur actuellement connecté
+const currentUser = auth.currentUser;
+
+// Vérifier si l'utilisateur est connecté avant d'accéder à ses informations
+if (currentUser) {
+    // L'utilisateur est connecté, vous pouvez accéder à ses informations
+    var formData = new FormData(event.target);
+    var vote = formData.get('vote'); // Obtenir la valeur du vote sélectionné
+    console.log( "User " + currentUser.uid + " voted " + vote + " for movie " + element.id);
+    myMovieService.voteForMovie(element.id, currentUser.uid, vote); // Appeler voteForMovie
+    // Vous pouvez maintenant gérer la soumission du vote ici, par exemple, l'envoyer au serveur
+} else {
+    // Aucun utilisateur n'est connecté, gérer cet état en conséquence
+    console.log("No user is currently logged in.");
+    // Peut-être afficher un message à l'utilisateur pour lui demander de se connecter ou s'inscrire
+}
     
     var voteSelect = document.createElement('select');
     //add class to select bootstrap
